@@ -30,6 +30,10 @@ def check_input(input_string):
 
             return float(input_string)
 
+    if 'e' in input_string:
+
+        return float(input_string)
+
     return None
 
 # Получение данных от пользователя.
@@ -60,23 +64,25 @@ while check_input(N2) is None or float(N2) <= 0 or float(N2) % 1 != 0:
 eps = input("Введите точность ε: ")
 while check_input(eps) is None:
     print("Введено некорректное значение. Точность ε должна быть целым или вещественным числом.")
-    eps = input("Введите точность ε: ")
 
 a = float(a)
 b = float(b)
 
-# Функция, которую нужно проинтегрировать. (Пользователь может менять на произвольную).
+# Функция, которую нужно проинтегрировать.
 def f(x):
+
     return x * math.sin(x)
 
-# Первообразная функции f(x). (Если пользователь меняет функцию на произвольную, то также необходимо поменять и первообразную).
+# Первообразная функции f(x).
 def F(x):
+
     return -x * math.cos(x) + math.sin(x)
 
 # Метод левых прямоугольников.
 def left_rectangle(f, a, b, n):
     n = float(n)
     if n == 0:
+
         return None
     
     h = (b - a) / n
@@ -92,6 +98,7 @@ def left_rectangle(f, a, b, n):
 def parabola(f, a, b, n):
     n = float(n)
     if n % 2 != 0 or n < 2:
+
         return None
     
     h = (b - a) / n
@@ -112,6 +119,7 @@ def parabola(f, a, b, n):
 
 # Вычисление истинного значения интеграла через первообразную.
 def true_integral(F, a, b):
+
     return F(b) - F(a)
 
 # Начальное значение N.
@@ -160,7 +168,7 @@ data = [
 ]
 
 # Вывод таблицы.
-print(tabulate(data, headers='firstrow', tablefmt="simple_grid", missingval='-', colalign=("center", "center", "center")))
+print(tabulate(data, headers='firstrow', tablefmt="simple_grid", missingval='-', colalign=("left", "left", "left")))
 
 # Вывод результата точности.
 print(f"Точность достигнута за {iterations} итераций с N = {N}.")
